@@ -15,12 +15,12 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   #ここにフォローした・されたの関係の部分
-  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followeb_id", dependent: :destroy
 
   #ここに一覧画面で使用する部分
   has_many :followings, through: :relationships, source: :followeb
-  has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :followebs, through: :reverse_of_relationships, source: :following
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }

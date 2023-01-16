@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'relationships/followebs'
   get 'relationships/followings'
-  get 'relationships/followers'
+  get 'relationships/followings'
+  get 'relationships/followebs'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   get 'events/index'
   root 'events#index'
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create show] do
     resource :relationships, only: %i[create destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
-    get 'followers' => 'relationships#followers', as: 'followers'
+    get 'followebs' => 'relationships#followebs', as: 'followebs'
   end
   resources :events do
     collection do
