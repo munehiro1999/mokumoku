@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-  def followebs; end
+  def followers; end
 
   def followings; end
 
