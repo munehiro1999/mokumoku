@@ -3,8 +3,6 @@
 Rails.application.routes.draw do
   get 'relationships/followebs'
   get 'relationships/followings'
-  get 'relationships/followings'
-  get 'relationships/followebs'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   get 'events/index'
   root 'events#index'
